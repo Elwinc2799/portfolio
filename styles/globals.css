@@ -2,15 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .heroButton {
-    @apply px-6 py-2 border border-[#242424] rounded-full uppercase text-xs
-        tracking-widest text-gray-500 transition-all 
-        hover:border-[#F7AB0A]/40 hover:text-[#F7AB0A]/40;
-  }
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-cream text-ink font-sans antialiased; }
 }
 
-.contactInput {
-  @apply outline-none bg-slate-400/10 rounded-sm border-b px-6 py-4 border-[#242424] text-gray-500 placeholder-gray-500 transition-all focus:border-[#F7AB0A]/40 
-  focus:text-[#F7AB0A]/40 hover:border-[#F7AB0A]/40;
+@layer components {
+  .section-label { @apply font-mono text-[10px] text-muted tracking-[0.16em] uppercase; }
+  .badge { @apply font-mono text-[9px] px-1.5 py-0.5 border border-border-cream bg-cream-dark text-muted rounded-sm; }
+  .badge-accent { @apply font-mono text-[9px] px-1.5 py-0.5 border border-accent/30 text-accent-dark rounded-sm; }
+  .btn-primary { @apply bg-accent text-white font-mono text-xs font-semibold tracking-wide px-5 py-2.5 rounded-sm hover:bg-accent-dark transition-colors inline-flex items-center gap-2; }
+  .btn-ghost { @apply bg-transparent border border-border-cream text-muted font-mono text-xs px-4 py-2.5 rounded-sm hover:border-ink hover:text-ink transition-colors; }
+  .contact-input { @apply w-full bg-cream-dark border border-border-cream px-4 py-3 text-sm text-ink placeholder-muted outline-none focus:border-accent transition-colors rounded-sm; }
 }

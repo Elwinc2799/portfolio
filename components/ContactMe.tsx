@@ -1,90 +1,139 @@
-import React from "react";
-import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { PageInfo } from "@/typings";
 
-type Inputs = {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
+type Props = { pageInfo: PageInfo };
+type Inputs = { name: string; email: string; subject: string; message: string };
+
+const linkCardVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.1 } },
 };
 
-type Props = {};
+const linkCardItem = {
+    hidden: { opacity: 0, x: 14 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" } },
+};
 
-function ContactMe({}: Props) {
-  const { register, handleSubmit } = useForm<Inputs>();
+export default function ContactMe({ pageInfo }: Props) {
+    const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (formData) => {
-    window.location.href = `mailto:elwinczh@gmail.com?subject=${formData.subject}&body=HI, my name is ${formData.name}. ${formData.message} (${formData.email})`;
-  };
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        setStatus("sending");
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
+            if (res.ok) { setStatus("success"); reset(); }
+            else setStatus("error");
+        } catch { setStatus("error"); }
+    };
 
-  return (
-    <div className="h-screen relative flex flex-col text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center">
-      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
-        Contact
-      </h3>
+    return (
+        <section className="bg-cream-dark border-t border-border-cream">
+            <div className="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-20">
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4 }}
+                    className="mb-10"
+                >
+                    <div className="section-label mb-3">Contact</div>
+                    <h2 className="text-2xl font-bold text-ink tracking-tight">Get in touch</h2>
+                    <p className="text-[14px] text-muted mt-2">Based in Malaysia · Open to remote or relocation to Penang / KL</p>
+                </motion.div>
 
-      <div className="flex flex-col space-y-10">
-        <h4 className="text-4xl font-semibold text-center">
-          I have got just what you need.{" "}
-          {/* eslint-disable-next-line react/no-unescaped-entities */}
-          <span className="decoration-[#F7AB0A]/50 underline">Let's Talk.</span>
-        </h4>
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-10 lg:gap-12">
+                    {/* Form */}
+                    <motion.form
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="flex flex-col gap-4"
+                    >
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <input {...register("name", { required: true })} placeholder="Name" className="contact-input" />
+                                {errors.name && <span className="font-mono text-[10px] text-accent mt-1 block">Required</span>}
+                            </div>
+                            <div>
+                                <input {...register("email", { required: true, pattern: /^\S+@\S+\.\S+$/ })} placeholder="Email" type="email" className="contact-input" />
+                                {errors.email && <span className="font-mono text-[10px] text-accent mt-1 block">Valid email required</span>}
+                            </div>
+                        </div>
+                        <input {...register("subject", { required: true })} placeholder="Subject" className="contact-input" />
+                        <textarea {...register("message", { required: true })} placeholder="Message" rows={5} className="contact-input resize-none" />
 
-        <div className="space-y-10">
-          <div className="flex items-center space-x-5 justify-center">
-            <PhoneIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p>+601139022271</p>
-          </div>
-          <div className="flex items-center space-x-5 justify-center">
-            <EnvelopeIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p>elwinczh@gmail.com</p>
-          </div>
-          <div className="flex items-center space-x-5 justify-center">
-            <MapPinIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p>859 Garden Avenue</p>
-          </div>
-        </div>
+                        {status === "success" ? (
+                            <motion.div
+                                initial={{ opacity: 0, y: 6 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-sm font-mono"
+                            >
+                                ✓ Message sent! I&apos;ll get back to you soon.
+                            </motion.div>
+                        ) : status === "error" ? (
+                            <motion.div
+                                initial={{ opacity: 0, y: 6 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded-sm font-mono"
+                            >
+                                Something went wrong — email me directly at{" "}
+                                <a href={`mailto:${pageInfo?.email || "elwinczh@gmail.com"}`} className="underline">
+                                    {pageInfo?.email || "elwinczh@gmail.com"}
+                                </a>
+                            </motion.div>
+                        ) : (
+                            <button type="submit" disabled={status === "sending"} className="btn-primary self-start">
+                                {status === "sending" ? "Sending..." : "Send Message →"}
+                            </button>
+                        )}
+                    </motion.form>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col space-y-2 w-fit mx-auto">
-          <div className="flex space-x-2">
-            <input
-              {...register("name")}
-              className="contactInput"
-              type="text"
-              placeholder="Name"
-            />
-            <input
-              {...register("email")}
-              className="contactInput"
-              type="email"
-              placeholder="Email"
-            />
-          </div>
+                    {/* Link cards */}
+                    <motion.div
+                        variants={linkCardVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="flex flex-col gap-4"
+                    >
+                        {[
+                            { label: "Email", value: pageInfo?.email || "elwinczh@gmail.com", href: `mailto:${pageInfo?.email || "elwinczh@gmail.com"}` },
+                            { label: "GitHub", value: "github.com/Elwinc2799", href: "https://github.com/Elwinc2799" },
+                            { label: "LinkedIn", value: "elwin-chiong-3602b5222", href: "https://linkedin.com/in/elwin-chiong-3602b5222/" },
+                        ].map((link) => (
+                            <motion.a
+                                key={link.label}
+                                variants={linkCardItem}
+                                whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                                href={link.href}
+                                target={link.label !== "Email" ? "_blank" : undefined}
+                                rel="noopener noreferrer"
+                                className="bg-cream border border-border-cream rounded-sm p-4 hover:border-accent/40 transition-colors group"
+                            >
+                                <div className="section-label mb-1">{link.label}</div>
+                                <div className="text-[13px] font-medium text-ink group-hover:text-accent transition-colors">{link.value}</div>
+                            </motion.a>
+                        ))}
+                    </motion.div>
+                </div>
+            </div>
 
-          <input
-            {...register("subject")}
-            className="contactInput"
-            type="text"
-            placeholder="Subject"
-          />
-
-          <textarea
-            {...register("message")}
-            className="contactInput"
-            placeholder="Message"
-          />
-          <button
-            className="bg-[#F7AB0A] py-5 px-10 rounded-md text-black font-bold text-lg"
-            type="submit">
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
-  );
+            {/* Footer */}
+            <div className="border-t border-border-cream">
+                <div className="max-w-6xl mx-auto px-6 md:px-10 py-6 flex items-center justify-between">
+                    <span className="font-mono text-[10px] text-muted">Elwin Chiong · AI Systems Engineer</span>
+                    <span className="font-mono text-[10px] text-muted">{new Date().getFullYear()}</span>
+                </div>
+            </div>
+        </section>
+    );
 }
-
-export default ContactMe;

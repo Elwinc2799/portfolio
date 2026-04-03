@@ -1,13 +1,11 @@
 import Head from "next/head";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import WorkExperience from "@/components/WorkExperience";
+import Work from "@/components/Work";
 import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
+import WorkExperience from "@/components/WorkExperience";
+import About from "@/components/About";
 import ContactMe from "@/components/ContactMe";
-import Link from "next/link";
-import Image from "next/image";
 import { PageInfo, Experience, Skill, Project, Social } from "@/typings";
 import { GetStaticProps } from "next";
 import { fetchPageInfo } from "@/utils/fetchPageInfo";
@@ -32,70 +30,46 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     const socials: Social[] = await fetchSocials();
 
     return {
-        props: {
-            pageInfo,
-            experiences,
-            skills,
-            projects,
-            socials,
-        },
+        props: { pageInfo, experiences, skills, projects, socials },
         revalidate: 10,
     };
 };
 
-export default function Home({
-    pageInfo,
-    experiences,
-    skills,
-    projects,
-    socials,
-}: Props) {
+export default function Home({ pageInfo, experiences, skills, projects, socials }: Props) {
     return (
-        <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-scroll z-0 overflow-y-scroll overflow-x-hidden scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80">
+        <div className="bg-cream text-ink min-h-screen">
             <Head>
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                <title>Elwin's portfolio</title>
+                <title>Elwin Chiong — AI Systems Engineer</title>
+                <meta name="description" content="AI Systems Engineer building LLM pipelines, cloud infrastructure, and production AI tools. Open to roles at Google, Meta, OpenAI, Anthropic." />
             </Head>
 
             <Header socials={socials} />
 
-            <section id="hero" className="snap-start">
-                <Hero pageInfo={pageInfo} />
-            </section>
+            <main>
+                <section id="hero">
+                    <Hero pageInfo={pageInfo} projects={projects} />
+                </section>
 
-            <section id="about" className="snap-center">
-                <About pageInfo={pageInfo}/>
-            </section>
+                <section id="work">
+                    <Work projects={projects} />
+                </section>
 
-            <section id="experience" className="snap-center">
-                <WorkExperience experiences={experiences} />
-            </section>
+                <section id="skills">
+                    <Skills skills={skills} />
+                </section>
 
-            <section id="skills" className="snap-start">
-                <Skills skills={skills} />
-            </section>
+                <section id="experience">
+                    <WorkExperience experiences={experiences} />
+                </section>
 
-            <section id="projects" className="snap-start">
-                <Projects projects={projects}/>
-            </section>
+                <section id="about">
+                    <About pageInfo={pageInfo} />
+                </section>
 
-            <section id="contact" className="snap-start">
-                <ContactMe />
-            </section>
-
-            <Link href="#hero">
-                <footer className="sticky bottom-5 w-full cursor-pointer">
-                    <div className="flex items-center justify-center">
-                        <Image
-                            className="rounded-full filter grayscale hover:grayscale-0 cursor-pointer"
-                            src="/images/avatar.jpg"
-                            alt=""
-                            height={30}
-                            width={30}
-                        />
-                    </div>
-                </footer>
-            </Link>
+                <section id="contact">
+                    <ContactMe pageInfo={pageInfo} />
+                </section>
+            </main>
         </div>
     );
 }
