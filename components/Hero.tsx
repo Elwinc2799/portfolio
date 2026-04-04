@@ -98,6 +98,13 @@ export default function Hero({ pageInfo, projects }: Props) {
                                 View Work ↗
                             </Link>
                             <a
+                                href="/ElwinChiongZhenHui_Resume_1Nov25.pdf"
+                                download
+                                className="btn-ghost"
+                            >
+                                Resume ↓
+                            </a>
+                            <a
                                 href="https://github.com/Elwinc2799"
                                 target="_blank"
                                 rel="noopener noreferrer"

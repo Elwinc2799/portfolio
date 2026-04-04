@@ -61,12 +61,16 @@ export default function Home({ pageInfo, experiences, skills, projects, socials 
                 <meta property="og:url" content="https://portfolio-elwinc2799.vercel.app/" />
                 <meta property="og:title" content="Elwin Chiong — AI Systems Engineer" />
                 <meta property="og:description" content="AI Systems Engineer building LLM pipelines, cloud infrastructure, and production AI tools. Open to roles at Google, Meta, OpenAI, Anthropic." />
+                <meta property="og:image" content="https://portfolio-elwinc2799.vercel.app/api/og" />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
                 <meta property="og:site_name" content="Elwin Chiong Portfolio" />
 
                 {/* Twitter Card */}
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content="Elwin Chiong — AI Systems Engineer" />
                 <meta name="twitter:description" content="AI Systems Engineer building LLM pipelines, cloud infrastructure, and production AI tools." />
+                <meta name="twitter:image" content="https://portfolio-elwinc2799.vercel.app/api/og" />
 
                 {/* Additional SEO */}
                 <meta name="author" content="Elwin Chiong" />

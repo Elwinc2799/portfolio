@@ -25,7 +25,7 @@ function Projects({ projects }: Props) {
                     <div
                         key={project._id}
                         className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center px-10 lg:pt-20 h-screen">
-                        <motion.img
+                        <motion.div
                             initial={{
                                 y: -300,
                                 opacity: 0,
@@ -33,10 +33,17 @@ function Projects({ projects }: Props) {
                             transition={{ duration: 1.2 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            src={urlFor(project?.image).url()}
-                            alt=""
-                            className="rounded-2xl h-[200px] md:h-[300px]"
-                        />
+                            className="relative h-[200px] md:h-[300px] w-auto"
+                        >
+                            <Image
+                                src={urlFor(project?.image).url()}
+                                alt={project?.title || "Project"}
+                                width={500}
+                                height={300}
+                                priority={i === 0}
+                                className="rounded-2xl object-cover"
+                            />
+                        </motion.div>
                         <div className="space-y-10 px-0 max-w-6xl">
                             <h4 className="text-4xl font-semibold text-center">
                                 <span className="underline decoration-[#F7AB0A]/50">
