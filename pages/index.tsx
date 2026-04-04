@@ -8,11 +8,8 @@ import About from "@/components/About";
 import ContactMe from "@/components/ContactMe";
 import { PageInfo, Experience, Skill, Project, Social } from "@/typings";
 import { GetStaticProps } from "next";
-import { fetchPageInfo } from "@/utils/fetchPageInfo";
-import { fetchExperiences } from "@/utils/fetchExperience";
-import { fetchSkills } from "@/utils/fetchSkills";
-import { fetchProjects } from "@/utils/fetchProjects";
-import { fetchSocials } from "@/utils/fetchSocials";
+import { groq } from "next-sanity";
+import { sanityClient } from "@/sanity";
 
 type Props = {
     pageInfo: PageInfo;
@@ -23,11 +20,25 @@ type Props = {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-    const pageInfo: PageInfo = await fetchPageInfo();
-    const experiences: Experience[] = await fetchExperiences();
-    const skills: Skill[] = await fetchSkills();
-    const projects: Project[] = await fetchProjects();
-    const socials: Social[] = await fetchSocials();
+    const pageInfo: PageInfo = await sanityClient.fetch(
+        groq`*[_type=="pageInfo"][0]`
+    );
+
+    const experiences: Experience[] = await sanityClient.fetch(
+        groq`*[_type=="experience"]{..., technologies[]->}`
+    );
+
+    const skills: Skill[] = await sanityClient.fetch(
+        groq`*[_type == "skill"]`
+    );
+
+    const projects: Project[] = await sanityClient.fetch(
+        groq`*[_type=="project"]{..., technologies[]->}`
+    );
+
+    const socials: Social[] = await sanityClient.fetch(
+        groq`*[_type == "social"]`
+    );
 
     return {
         props: { pageInfo, experiences, skills, projects, socials },
