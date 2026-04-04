@@ -17,7 +17,7 @@ module.exports = {
           DEFAULT: "#E8672A",
           dark: "#D45A20",
         },
-        muted: "#777777",
+        muted: "#6a6a6a", // Darkened from #777777 for WCAG AA contrast (4.5:1)
         "border-cream": "#DEDAD5",
       },
       fontFamily: {
