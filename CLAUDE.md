@@ -11,6 +11,7 @@ Available gstack skills:
 - `/plan-ceo-review` - CEO review of a plan
 - `/plan-eng-review` - Engineering review of a plan
 - `/plan-design-review` - Design review of a plan
+- `/plan-devex-review` - Developer experience plan review
 - `/design-consultation` - Design consultation
 - `/design-shotgun` - Shotgun design exploration
 - `/design-html` - HTML design generation
@@ -24,6 +25,7 @@ Available gstack skills:
 - `/qa` - QA testing
 - `/qa-only` - QA only (no implementation)
 - `/design-review` - Design review
+- `/devex-review` - Developer experience review
 - `/setup-browser-cookies` - Set up browser cookies
 - `/setup-deploy` - Set up deployment
 - `/retro` - Retrospective
@@ -38,6 +40,8 @@ Available gstack skills:
 - `/unfreeze` - Unfreeze codebase
 - `/gstack-upgrade` - Upgrade gstack
 - `/learn` - Learn mode
+
+**Troubleshooting:** If gstack skills aren't working, run `cd .claude/skills/gstack && ./setup` to build the binary and register skills.
 
 ## Commands
 

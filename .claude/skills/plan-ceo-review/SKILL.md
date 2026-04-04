@@ -1,0 +1,1 @@
+/Users/elwin/Developer/portfolio/.claude/skills/gstack/plan-ceo-review/SKILL.md
