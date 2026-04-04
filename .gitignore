@@ -36,4 +36,23 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# gstack / QA artifacts
 .gstack/
+.playwright-mcp/
+
+# design exploration scratch files
+colour-vibe.png
+variant-A.png
+variant-B.png
+variant-C.png
+variant-D.png
+variant-E.png
+live-hero.png
+live-top.png
+mobile-hero.png
+public/variant-*.html
+
+# personal reference files (not for source control)
+*.pdf
+*LinkedIn*.html

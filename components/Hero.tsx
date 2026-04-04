@@ -57,7 +57,7 @@ export default function Hero({ pageInfo, projects }: Props) {
                     variants={heroVariants}
                     initial="hidden"
                     animate="visible"
-                    className="flex flex-col justify-between py-12 lg:py-16 lg:border-r lg:border-border-cream lg:pr-16"
+                    className="flex flex-col justify-start gap-10 lg:justify-between py-12 lg:py-16 lg:border-r lg:border-border-cream lg:pr-16"
                 >
                     <div>
                         <motion.div
@@ -119,7 +119,7 @@ export default function Hero({ pageInfo, projects }: Props) {
                     {/* Stats row */}
                     <motion.div
                         variants={fadeUp}
-                        className="border-t border-border-cream grid grid-cols-3 mt-10"
+                        className="border-t border-border-cream grid grid-cols-3"
                     >
                         {STATS.map((stat, i) => (
                             <div
