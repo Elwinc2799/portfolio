@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { PageInfo, Project } from "@/typings";
+import AskMe from "./AskMe";
 
 type Props = { pageInfo: PageInfo; projects: Project[] };
 
@@ -81,7 +82,7 @@ export default function Hero({ pageInfo, projects }: Props) {
 
                         <motion.p
                             variants={fadeUp}
-                            className="text-base text-muted leading-relaxed max-w-md mb-8 md:mb-10"
+                            className="text-base text-muted leading-relaxed max-w-md mb-6"
                         >
                             Building{" "}
                             <strong className="text-ink font-semibold">AI pipelines</strong>,{" "}
@@ -89,6 +90,10 @@ export default function Hero({ pageInfo, projects }: Props) {
                             <strong className="text-ink font-semibold">cloud infrastructure</strong>{" "}
                             that ship to production and scale.
                         </motion.p>
+
+                        <motion.div variants={fadeUp} className="mb-8 md:mb-10">
+                            <AskMe />
+                        </motion.div>
 
                         <motion.div
                             variants={fadeUp}
