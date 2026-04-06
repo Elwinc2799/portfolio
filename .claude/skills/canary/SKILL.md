@@ -1,1 +1,1 @@
-/home/elwin/dev/portfolio/.claude/skills/gstack/canary/SKILL.md
+/Users/elwin/Developer/portfolio/.claude/skills/gstack/canary/SKILL.md

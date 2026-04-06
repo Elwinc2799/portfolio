@@ -1,1 +1,1 @@
-/home/elwin/dev/portfolio/.claude/skills/gstack/setup-browser-cookies/SKILL.md
+/Users/elwin/Developer/portfolio/.claude/skills/gstack/setup-browser-cookies/SKILL.md
