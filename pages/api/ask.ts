@@ -3,12 +3,11 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const foundryResource = process.env.ANTHROPIC_FOUNDRY_RESOURCE ?? "az-coding-llms-resource";
 
+// Base URL: SDK appends /v1/messages → full path is /anthropic/v1/messages
+// Auth: SDK sends x-api-key header by default (Anthropic standard, works with Azure Foundry)
 const client = new Anthropic({
     apiKey: process.env.ANTHROPIC_FOUNDRY_API_KEY ?? "",
-    baseURL: `https://${foundryResource}.services.ai.azure.com/`,
-    defaultHeaders: {
-        "api-key": process.env.ANTHROPIC_FOUNDRY_API_KEY ?? "",
-    },
+    baseURL: `https://${foundryResource}.services.ai.azure.com/anthropic/`,
 });
 
 // In-memory rate limit store: IP -> list of request timestamps
