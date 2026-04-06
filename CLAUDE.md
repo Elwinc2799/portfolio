@@ -50,9 +50,22 @@ yarn dev      # Start development server on http://localhost:3000
 yarn build    # Production build
 yarn start    # Run production server
 yarn lint     # ESLint with next/core-web-vitals rules
+yarn test     # Run vitest test suite (bunx vitest run)
+yarn test:watch  # Vitest in watch mode
 ```
 
-No test suite is configured.
+## Testing
+
+**Framework:** Vitest + @testing-library/react + happy-dom
+
+```bash
+bunx vitest run        # Run all tests once
+bunx vitest            # Watch mode
+```
+
+Tests live in `__tests__/`. Current coverage: `AskMe` component (5 tests — streaming, rate limit, chip interaction, hide-after-ask).
+
+Add tests for new components in `__tests__/<ComponentName>.test.tsx`. Use `happy-dom` (not jsdom) as the environment — jsdom has ESM/CJS conflicts with this project's dependency tree.
 
 ## Environment Variables
 

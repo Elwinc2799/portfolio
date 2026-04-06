@@ -18,6 +18,8 @@ AI Systems Engineer portfolio built with Next.js 13, TypeScript, Tailwind CSS, a
 - **Email:** Resend
 - **Analytics:** Vercel Analytics
 - **OG Images:** @vercel/og (dynamic generation)
+- **AI Widget:** Anthropic SDK via Azure AI Foundry (claude-haiku-4-5)
+- **Testing:** Vitest + @testing-library/react
 
 ---
 
@@ -117,7 +119,7 @@ Five content types in Sanity Studio:
 Hash-based navigation (#hero, #work, #skills, #experience, #about, #contact)
 
 ### Core Sections
-1. **Hero** — Name with signature orange "o", quick stats, Resume download, CTA
+1. **Hero** — Name with signature orange "o", quick stats, AskMe AI widget, Resume download, CTA
 2. **Work** — Featured projects (ClickBites, AMD Data Platform, AMD Infrastructure)
 3. **Skills** — Technical skills with proficiency levels
 4. **Experience** — Work history timeline
@@ -228,7 +230,7 @@ This project uses **gstack** for QA, code review, and deployment workflows:
 /ship            # Ship workflow (test + review + commit + push)
 ```
 
-See `.claude/skills/gstack/` for available skills.
+Skills are managed via the shared gstack install at `~/.claude/skills/gstack/`.
 
 ---
 
