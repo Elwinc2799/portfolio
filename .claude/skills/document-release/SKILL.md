@@ -1,1 +1,1 @@
-/Users/elwin/Developer/portfolio/.claude/skills/gstack/document-release/SKILL.md
+/home/elwin/dev/portfolio/.claude/skills/gstack/document-release/SKILL.md

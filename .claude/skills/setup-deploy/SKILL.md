@@ -1,1 +1,1 @@
-/Users/elwin/Developer/portfolio/.claude/skills/gstack/setup-deploy/SKILL.md
+/home/elwin/dev/portfolio/.claude/skills/gstack/setup-deploy/SKILL.md

@@ -1,1 +1,1 @@
-/Users/elwin/Developer/portfolio/.claude/skills/gstack/freeze/SKILL.md
+/home/elwin/dev/portfolio/.claude/skills/gstack/freeze/SKILL.md

@@ -1,1 +1,1 @@
-/Users/elwin/Developer/portfolio/.claude/skills/gstack/health/SKILL.md
+/home/elwin/dev/portfolio/.claude/skills/gstack/health/SKILL.md

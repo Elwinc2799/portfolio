@@ -1,1 +1,1 @@
-/Users/elwin/Developer/portfolio/.claude/skills/gstack/plan-design-review/SKILL.md
+/home/elwin/dev/portfolio/.claude/skills/gstack/plan-design-review/SKILL.md
