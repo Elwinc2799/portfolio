@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",
@@ -32,10 +34,18 @@
     "typescript": "4.9.5"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "^10.4.13",
+    "happy-dom": "^20.8.9",
+    "jsdom": "^29.0.1",
     "lighthouse": "^13.0.3",
     "postcss": "^8.4.21",
     "tailwind-scrollbar": "^2.1.0",
-    "tailwindcss": "^3.2.7"
+    "tailwindcss": "^3.2.7",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^4.1.2"
   }
 }
