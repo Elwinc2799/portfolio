@@ -19,5 +19,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "sanity", "scripts"]
+  "exclude": ["node_modules", "sanity", "scripts", "vitest.config.ts", "vitest.setup.ts"]
 }
