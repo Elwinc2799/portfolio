@@ -56,3 +56,4 @@ public/variant-*.html
 # personal reference files (not for source control)
 *.pdf
 *LinkedIn*.html
+.claude/skills/gstack/
