@@ -1,1 +1,0 @@
-/Users/elwin/Developer/portfolio/.claude/skills/gstack/open-gstack-browser/SKILL.md

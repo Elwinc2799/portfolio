@@ -1,1 +1,0 @@
-/Users/elwin/Developer/portfolio/.claude/skills/gstack/unfreeze/SKILL.md
